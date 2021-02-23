@@ -50,6 +50,8 @@ The strength of linear regression as a supervised machine learning model is inte
 ![kcinfo](http://localhost:8888/view/Pics/KC%20Info.png)
 
 
+![kcinfo](http://localhost:8888/view/Pics/KCInfo.png)
+
 
 
 
