@@ -46,6 +46,9 @@ The strength of linear regression as a supervised machine learning model is inte
 <a name="EDA"></a>
 ### Exploratory Data Analysis
 
+#### Importing the KC dataset
+![kcinfo](http://localhost:8888/view/Pics/KC%20Info.png)
+
 
 
 
