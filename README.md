@@ -52,7 +52,8 @@ The strength of linear regression as a supervised machine learning model is inte
 
 The first step in any data analysis is orienting yourself to an overview of the data you'll be working with. This summary will show us the number of observations in the dataset, as well as the number in each column, and the type of data used in each column. Our data has two columns of the 'object' type that we will have to convert in order to be processed visually and modeled. 
 
-Why doesnt this work. 
+After converting data types we will check to see if there are any null values in our dataset.
+![null](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Null.png)
 
 
 
