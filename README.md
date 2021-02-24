@@ -68,10 +68,10 @@ After converting data types we will check to see if there are any null values in
 ![heatmap](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Heatmap.png)
 
 
-![gradeex](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Grade%20Ex..png)
-
-
 ![pricecorr](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Price%20Corr.png)
+
+
+![gradeex](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Grade%20Ex..png)
 
 
 ![gradebox](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Grade%20BoxPlot.png)
