@@ -47,7 +47,7 @@ The strength of linear regression as a supervised machine learning model is inte
 ### Exploratory Data Analysis
 
 #### Importing the KC dataset
-![kcinfo](https://github.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/blob/master/Pics/KC%20Info.png)
+![kcinfo](https://github.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/blob/master/Model%20Ex..png)
 
 
 
