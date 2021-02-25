@@ -54,8 +54,11 @@ The first step in any data analysis is orienting yourself to an overview of the 
 
 ![info](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Screen%20Shot%202021-02-24%20at%209.19.19%20PM.png)
 
-After converting data types we will check to see if there are any null values in our dataset.
+After converting data types using string methods we will check to see if there are any null values in our dataset.
+
 ![null](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Null.png)
+
+Due to the number of null values in our data and what they represented I imputed them with the mode value for each column with null values. 
 
 
 ![price](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Price.png)
