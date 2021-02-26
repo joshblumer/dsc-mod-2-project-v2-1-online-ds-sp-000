@@ -46,45 +46,58 @@ The strength of linear regression as a supervised machine learning model is inte
 <a name="EDA"></a>
 ### Exploratory Data Analysis
 
-#### Importing the KC dataset
-
-
+#### Importing and Reviewing the KC dataset
 
 The first step in any data analysis is orienting yourself to an overview of the data you'll be working with. This summary will show us the number of observations in the dataset, as well as the number in each column, and the type of data used in each column. Our data has two columns of the 'object' type that we will have to convert in order to be processed visually and modeled. 
 
 ![info](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Screen%20Shot%202021-02-24%20at%209.19.19%20PM.png)
 
+#### Data Preprocessing
+
 After converting data types using string methods we will check to see if there are any null values in our dataset.
 
 ![null](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Null.png)
 
-Due to the number of null values in our data and what they represented I imputed them with the mode value for each column with null values. 
+Due to the number of null values in our data and what they represented I imputed them with the mode value for each column that contained null values. 
 
-
-![price](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Price.png)
-
-
-![pricefiltered](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Price%20Filtered.png)
-
+#### Filtering Values
 
 ![model](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Model%20Ex..png)
 
+A normally distributed target (dependent) variable is not required for the model to function properly, but the more normal the distribution is the more acceptable the normality and constant variance of the error terms will be during model validation. Our target distribution is highly skewed so normalizing it will be beneficial. The most common way to normalize a distribution in machine learning applications is to apply a logarithmic transformation, but that will also change the scale and magnitude of the intercept and coefficients making them much harder to interpret. Since the strength of linear regression relies on its interpretability we will avoid any processes that make the model diffifcult to interpret. 
+
+![price](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Price.png)
+
+One way we can attempt to normalize our target distribution without changing the scale is to filter the range of values manually. By placing an upper limit on 'price' we can remove several outliers contributing to the level of skewness in the distribution. 
+
+![pricefiltered](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Price%20Filtered.png)
+
+The result is not a perfectly normal distribution but it is an improvement that will allow the model to retain intuitive interpretation. 
+
+#### Correlation Among Variables
+
+We will use a correlation heatmap to begin to assess what features have a strong relationship with our target 'price' and also what features have high correlations with each other. 
 
 ![heatmap](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Heatmap.png)
 
+The feature with the strongest relationship with price is sqft_living, but sqft_living also has high correlation with several other features. We will remove sqft_living from consideration due to its high correlation with many other variables that share proportional increases and decreases with square footage of a home such as number of bedrooms and bathrooms. The second highest correlation with price is the grade feature so we will continue to examine if it is a suitable candidate to build our model around. 
 
-![pricecorr](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Price%20Corr.png)
+![gradebox](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Grade%20BoxPlot.png)
 
+One of the regression assumptions that cannot be violated if we want to have a successful model is the target and feature variables having a linear relationship. We can check linearity assumptions by plotting features against the target. Histograms work well with continuous data but since grade is an ordinal (following a natural order) categorical  variable we will visualize it using a boxplot. There is clearly a linear relationship between grade and price, but we are not provided with much background information on what grade represents so we will research its significance. 
 
 ![gradeex](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Grade%20Ex..png)
 
+A quick search through King County's website returned a summary of what the different levels of grade represent. Now that the meaning and range of grade is no longer ambiguous and the linearity assumption has been satisfied, we will move forward with model construction. 
 
-![gradebox](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Grade%20BoxPlot.png)
+![pricecorr](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Price%20Corr.png)
+
+With features relating to square footage being removed and grade being chosen as our strongest feature we will take a closer look at the remaining features to analyze their relationship with price and get an idea of how they could be engineered and optimized to enhance our model. Our second strongest remaining feature after grade is latitude, but latitude and longitude are not currently represented in an intuitive format. Location is very important to buyers and sellers in real estate markets so we will focus on a solution to incorporate location into our model using the data we've been given.  
 
 
 ![baseline](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Baseline%20OLS.png)
 
-
+Our data has been preprocessed and we are ready to move on to engineering features and tuning our model. Before we begin that process we will run a baseline regression that can be used as a performance metric going forward. 
 
 <a name="Features"></a>
 ### Feature Engineering
