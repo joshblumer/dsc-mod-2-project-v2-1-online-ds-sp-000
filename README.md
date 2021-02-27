@@ -105,7 +105,7 @@ Our data has been preprocessed and we are ready to move on to engineering featur
 ![pricemap](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Lat%3ALong%20Map.png)
 
 
-![zipbar](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Zips.png)
+![zipbar](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Screen%20Shot%202021-02-27%20at%203.11.17%20PM.png)
 
 
 ![sdmap](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20School%20Districts.gif)
