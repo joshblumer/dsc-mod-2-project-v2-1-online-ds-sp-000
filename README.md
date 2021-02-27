@@ -102,6 +102,10 @@ Our data has been preprocessed and we are ready to move on to engineering featur
 <a name="Features"></a>
 ### Feature Engineering
 
+#### Latitude, Longitude, and Zipcode
+
+
+
 ![pricemap](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Lat%3ALong%20Map.png)
 
 
