@@ -58,7 +58,7 @@ After converting data types using string methods we will check to see if there a
 
 ![null](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Null.png)
 
-Due to the number of null values in our data and what they represented I imputed them with the mode value for each column that contained null values. 
+Due to the number of null values in our data and what they represented I will impute them with the mode value for each column that contained null values. 
 
 #### Filtering Values
 
