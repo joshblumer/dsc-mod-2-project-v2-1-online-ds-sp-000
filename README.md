@@ -104,7 +104,7 @@ Our data has been preprocessed and we are ready to move on to engineering featur
 
 #### Latitude, Longitude, and Zipcode
 
-
+Location is often one of if not the most important factor taken into consideration when buying a home, and is also a known contributor of how the value of a property is assessed when selling a home. 
 
 ![pricemap](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Lat%3ALong%20Map.png)
 
