@@ -104,13 +104,17 @@ Our data has been preprocessed and we are ready to move on to engineering featur
 
 #### Latitude, Longitude, and Zipcode
 
-Location is often one of if not the most important factor taken into consideration when buying a home, and is also a known contributor of how the value of a property is assessed when selling a home. 
+Location is often one of if not the most important factors taken into consideration when buying a home, and is also a known contributor of how the value of a property is assessed when selling a home. The location features we are given in the dataset are latitude, longitude, and zip code. There is useful information in those features but not in the format given because the model interprets them as a continuous range of values. In order to incorporate those features into the model, engineering them into an intuitive and interpretible format was required. 
+
+If you examine the map below you can see there are several areas with common groupings of prices. The city areas of 'Seattle' and 'Bellevue' as well as the areas along waterfronts appear to contain a much higher proportion of higher priced homes. 
 
 ![pricemap](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Lat%3ALong%20Map.png)
 
+My first attempt at feature engineering was using the Haversine library to pinoint a houses location by combining their latitude and longitude, and then with that information I calculated their distance to the cities 'Seattle' and 'Bellevue' due to the grouping of home prices around that area. My hypothesis was that homes close to those cities would be priced higher and prices would decrease as distance from those cities increased. This new feature had a moderate correlation with price, but became problematic during the modeling phase due to high VIF with the engineered zipcode variable so it was not retained.
 
 ![zipbar](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Screen%20Shot%202021-02-27%20at%203.11.17%20PM.png)
 
+My second attempt with feature engineering was with zipcode. By plotting zipcodes against their average prices you can determine that there is a linear relationship with price but zipcode is a category so it will need to be transformed in order for the model to be able to process it. One way you can transform categorical variables to be used in regression modeling is to "one-hot encode" them. This process takes each individual value or 'category', turns it into its own feature, and binarizes it so the model interprets its presence as a 1 or 0 instead of the given value. One-hot encoding the zipcode feature was very effective and increased the r-squared, but adding the 70 different zipcodes each as their own independent variable also complicates the model and makes it much harder to interpret. 
 
 ![sdmap](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20School%20Districts.gif)
 
