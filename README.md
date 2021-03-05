@@ -187,8 +187,15 @@ The r-squared improvement in the final model is marginal but by grouping all sch
 
 ### Insights
 
+#### School District Summary Statistics
+
 ![sdsum](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/SD%20Summary.png)
+
+Once the zip codes were grouped into school districts and the school districts were grouped into common zones I was able to retrieve summary statistics of the feature categories. Many feature statistics were closely distributed around the total means including bedrooms(3.5), bathrooms(2), floors(1.4), condition(3.5), and grade(7.5). This is a valuable insight because it allows us to see how each school district zone affects the price range of a home while holding other variables constant. This information can be used while selling a home and would be especially valuable to anyone in the process of looking for a home to purchase. If a person has children who attend public school they could use this information to find the best school system within their budget, and if a person doesnt have children attending public school they could use this information the find the average home prices in a specific area they want to live or they could maximize the the size and quality of the home within their budget by looking in school districts with lower mean prices. 
+
 ![sddpsq](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/SD%20dpsf.png)
+
+The last summary statistic I retrieved was the average dollar per square foot value for homes in each school district. This could help an individual easily calculate a range of what they could expect their home's value to be and would also be useful information for individuals or property developers to take into consideration when looking for property to develop. 
 
 ### Conclusion
 
