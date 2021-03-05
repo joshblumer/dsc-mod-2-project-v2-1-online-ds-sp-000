@@ -118,12 +118,15 @@ My second attempt with feature engineering was with zipcode. By plotting zipcode
 
 ![sdmap](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20School%20Districts.gif)
 
+One way to reduce the complexity of one hot encoding each individual zip code was to group the zip codes together into bins based on a given value range and then one hot encode the bins. I wanted the groupings of zip codes to be naturally occurring and geographically significant and based on the clustering of home prices I assumed that to be possible if I could find the right mechanism. After reflecting on the challenge, the question of how King Counties school district borders were determined came to mind so I googled my question and found the following map. After visually comparing the school district and price by location maps it was very apparent that there was a relationship between the two.
 
 ![sdbox](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/SD%20PreBinned.png)
 
+I manually created a dictionary of school districts that contained their corresponding zip codes and used a box plot to assess if there was a linear relationship between school districts and price which there was. By binning zip codes into school districts I was able to reduce zip code from 70 entries down to 18, but there were multiple school districts with similarly distributed price ranges so I assessed the map again and grouped those similar school districts together for a final number of 9 school district zones.
 
 ![sdbinned](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/SD%20Binned.png)
 
+Reducing the number of zip codes nearly ten fold from 70 to 9 reduced the r-squared but greatly improved the ability to use the model intuitively and interpret the results.  
 
 <a name="Models"></a>
 ### Modeling 
