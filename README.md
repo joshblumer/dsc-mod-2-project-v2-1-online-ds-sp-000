@@ -131,14 +131,22 @@ Reducing the number of zip codes nearly ten fold from 70 to 9 reduced the r-squa
 <a name="Models"></a>
 ### Modeling 
 
+I took an iterative approach to modeling that included experimenting with bottom up ( adding one feature at a time to the model until multicollinearity was introduced), top down (starting with all available features and removing one at a time until there was no multicollinearity present), and models built around different ‘anchor’ features (sqft_living and grade) that had high correlation with the target variable but couldn’t be included in a model together due to high correlation among each other. 
+
+#### Bottom Up
+
 ![simple](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Simple%20OLS.png)
 
+I began the bottom up approach with a simple regression on the strongest retained feature 'grade' which is shown above and added features iteratively checking the VIF with each addition. This process seemed to be a less efficient workflow due to having to add a new cell to rerun the regression during each iteration.   
+#### Top Down with Pre Zoned School Districts
 
 ![topdownstart](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Top%20Down%20Start%20OLS.png)
 
+My next approach was top down feature removal with the original school district list before being combined into zones with similar price ranges. The r-squared began at 0.696.
 
 ![topdownend](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Top%20Down%20End%20OLS.png)
 
+Once I removed the features with a p-value over 0.05 and VIF over 30 I was left with an r-squared of 0.649.
 
 ![topdownvif](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Top%20Down%20End%20VIF.png)
 
