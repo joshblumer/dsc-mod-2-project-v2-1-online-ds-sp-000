@@ -138,45 +138,59 @@ I took an iterative approach to modeling that included experimenting with bottom
 ![simple](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Simple%20OLS.png)
 
 I began the bottom up approach with a simple regression on the strongest retained feature 'grade' which is shown above and added features iteratively checking the VIF with each addition. This process seemed to be a less efficient workflow due to having to add a new cell to rerun the regression during each iteration.   
-#### Top Down with Pre Zoned School Districts
+
+#### Top Down Grade Centric Model with Individual School Districts
 
 ![topdownstart](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Top%20Down%20Start%20OLS.png)
 
-My next approach was top down feature removal with the original school district list before being combined into zones with similar price ranges. The r-squared began at 0.696.
+My next approach was top down feature removal with the original school district list before being combined into zones with similar price ranges. The r-squared began at 0.696
 
 ![topdownend](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Top%20Down%20End%20OLS.png)
 
-Once I removed the features with a p-value over 0.05 and VIF over 30 I was left with an r-squared of 0.649.
+Once I removed the features with a p-value over 0.05 and VIF over 30 I was left with an r-squared of 0.649
 
 ![topdownvif](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Top%20Down%20End%20VIF.png)
 
+Due to the original school district features having multiple columns with similar price mean and range, this model had multiple features with VIF over 10. This model met validation assumptions but crossed the VIF threshold that I was comfortable with. 
+
+#### Sqft_Living Centric Model
 
 ![sqftstart](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/SQFT%20Start%20OLS.png)
 
+Another iteration of model experimentation I attemped was using sqft_living as the primary feature to measure VIF against instead of grade. It began with an r-squared of 0.690
 
 ![sqftend](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/SQFT%20End%20OLS.png)
 
+Throughout the process of removing features with high p-values and VIF the r-squared of this model approach diminished to 0.411
 
 ![sdstart](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/SD%20Start%20OLS.png)
 
+#### Top Down Grade Centric Model with Zoned School Districts 
 
 ![sdend](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/SD%20End%20OLS.png)
 
+This is my final model which was built using a grade centric approach and zoned school districts. By grouping the school districts into zones with similar price means and ranges the initial r-squared increased from 0.696 to 0.714
 
 ![finalp](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Final%20Model%20P-Values.png)
 
+After removing the features with high p-values and VIF I was left with an r-squared of 0.665, an increase from 0.649
 
 ![finalvif](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Final%20VIF.png)
 
+The final model has the lowest measures of skew, kurtosis, and condition number. All of the p-values are less than 0.05
 
 ![resid](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Residuals.png)
 
+The r-squared improvement in the final model is marginal but by grouping all school districts into zones the VIF for each feature was lowered to less than 5 which is a great improvement. A high level of VIF indicates that the model can't distinguish which correlated features are contributing predictive power to the the models results so lowering the VIF makes the model much more reliable. 
 
+## Summary
 
-## Conclusion
+### Insights
 
 ![sdsum](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/SD%20Summary.png)
 ![sddpsq](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/SD%20dpsf.png)
 
-Initial data exploration and baseline modeling revealed high correlation and variance inflation factors among several of the features (independent variables). Thus achieving a high r-squared and low MSE (mean squared error) while avoiding those high correlations and meeting regression assumptions was challenging. I first experimented with separate models based on the two features that had the highest correlation with price, "grade" and "sqft_living" and found that "grade" was the best candidate due to lower levels of correlation among a greater number of features. "Grade" and "sqft_living" were not compatible for use in a model together due to high correlation. My approach then consisted of experimenting with top-down (starting with all predictor variables and removing features with high correlation or vif one at a time) and bottom-up (starting with the feature that had the highest correlation with price and adding features one at a time until correlation among features was introduced) model constructions and I found top-down to be more efficient in this particular use case so that approach was retained. My final model uses the features grade, view, waterfront, home age,  and school districts binned into zones as price predictors and has an r-squared of 0.67 and MSE of $113,835. The coefficient for grade is $119,500, so for every increase in one unit of grade on the scale of 3-13, with a mean of 7, there is a corresponding price increase of $119,500. The coefficient for view is $38,870, view is a measure of how many times the home was viewed before selling on a scale of 0-4 with a mean of 0.23. The coefficient for waterfront is $130,400 so a property with waterfront access sells for an average of $130,400 more than the same home without waterfront access. 
+### Conclusion
+
+Initial data exploration and baseline modeling revealed high correlation and variance inflation factors among several of the features (independent variables). Thus achieving a high r-squared and low MSE (mean squared error) while avoiding those high correlations and meeting regression assumptions was challenging. I first experimented with separate models based on the two features that had the highest correlation with price, "grade" and "sqft_living" and found that "grade" was the best candidate due to lower levels of correlation among a greater number of features. "Grade" and "sqft_living" were not compatible for use in a model together due to high correlation. My approach then consisted of experimenting with top-down (starting with all predictor variables and removing features with high correlation or vif one at a time) and bottom-up (starting with the feature that had the highest correlation with price and adding features one at a time until correlation among features was introduced) model constructions and I found top-down to be more efficient in this particular use case so that approach was retained. My final model uses the features grade, view, waterfront, home age,  and school districts binned into zones as price predictors and has an r-squared of 0.67 and MSE of $113,835. The coefficient for grade is $119,500, so for every increase in one unit of grade on the scale of 3-13, with a mean of 7, there is a corresponding price increase of $119,500. The coefficient for view is $38,870, view is a measure of how many times the home was viewed before selling on a scale of 0-4 with a mean of 0.23. There was . The coefficient for waterfront is $130,400 so a property with waterfront access sells for an average of $130,400 more than the same home without waterfront access. 
 
