@@ -35,7 +35,7 @@ An exploratory data analysis of the King County Housing database provided by The
 
 ## Methodology
 
-The strength of linear regression as a supervised machine learning model is interpretability so my primary goal while constructing this model is to achieve as high of an r-squared and as low of a MSE (mean squared error) as possible while maintaining model interpretability. Particular attention has to be paid to the regression assumptions of linearity and multicollinearity among predictor variables and normality, homoscedasticity, and independence of the error terms in order for the feature coefficients to be reliable. 
+The strength of linear regression as a supervised machine learning model is interpretability therefore my primary goal while constructing this model is to achieve as high of an r-squared and as low of a MSE (mean squared error) as possible while maintaining model interpretability. Particular attention has to be paid to the regression assumptions of linearity and multicollinearity among predictor variables and normality, homoscedasticity, and independence of the error terms in order for the feature coefficients to be reliable. 
 
 ## Table of Contents
 
@@ -110,11 +110,11 @@ If you examine the map below you can see there are several areas with common gro
 
 ![pricemap](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20Lat%3ALong%20Map.png)
 
-My first attempt at feature engineering was using the Haversine library to pinoint a houses location by combining their latitude and longitude, and then with that information I calculated their distance to the cities 'Seattle' and 'Bellevue' due to the grouping of home prices around that area. My hypothesis was that homes close to those cities would be priced higher and prices would decrease as distance from those cities increased. This new feature had a moderate correlation with price, but became problematic during the modeling phase due to high VIF with the engineered zipcode variable so it was not retained.
+My first attempt at feature engineering was using the Haversine library to pinoint a house's location by combining their latitude and longitude, and then with that information I calculated their distance to the cities 'Seattle' and 'Bellevue' due to the grouping of home prices around that area. My hypothesis was that homes close to those cities would be priced higher and prices would decrease as distance from those cities increased. This new feature had a moderate correlation with price, but became problematic during the modeling phase due to high VIF with the engineered zipcode variable so it was not retained.
 
 ![zipbar](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Screen%20Shot%202021-02-27%20at%203.11.17%20PM.png)
 
-My second attempt with feature engineering was with zipcode. By plotting zipcodes against their average prices you can determine that there is a linear relationship with price but zipcode is a category so it will need to be transformed in order for the model to be able to process it. One way you can transform categorical variables to be used in regression modeling is to "one-hot encode" them. This process takes each individual value or 'category', turns it into its own feature, and binarizes it so the model interprets its presence as a 1 or 0 instead of the given value. One-hot encoding the zipcode feature was very effective and increased the r-squared, but adding the 70 different zipcodes each as their own independent variable also complicates the model and makes it much harder to interpret. 
+My second attempt with feature engineering was with zipcode. By plotting zipcodes against their average prices you can determine that there is a linear relationship with price but zipcode is a category so it will need to be transformed in order for the model to be able to process it. One way you can transform categorical variables to be used in regression modeling is to "one-hot encode" them. This process takes each individual value or 'category', turns it into its own feature, and binarizes it so the model interprets its presence as a 1 or 0 instead of the given value. One-hot encoding the zipcode feature was very effective and increased the r-squared, but adding the 70 different zipcodes each as their own independent variable also complicates the model and makes it much more difficult to interpret. 
 
 ![sdmap](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/KC%20School%20Districts.gif)
 
@@ -131,7 +131,7 @@ Reducing the number of zip codes nearly ten fold from 70 to 9 reduced the r-squa
 <a name="Models"></a>
 ### Modeling 
 
-I took an iterative approach to modeling that included experimenting with bottom up ( adding one feature at a time to the model until multicollinearity was introduced), top down (starting with all available features and removing one at a time until there was no multicollinearity present), and models built around different ‘anchor’ features (sqft_living and grade) that had high correlation with the target variable but couldn’t be included in a model together due to high correlation among each other. 
+I took an iterative approach to modeling that included experimenting with bottom up (adding one feature at a time to the model until multicollinearity was introduced), top down (starting with all available features and removing one at a time until there was no multicollinearity present), and models built around different ‘anchor’ features (sqft_living and grade) that had high correlation with the target variable but couldn’t be included in a model together due to high correlation among each other. 
 
 #### Bottom Up
 
@@ -180,6 +180,12 @@ After removing the features with high p-values and VIF I was left with an r-squa
 The final model has the lowest measures of skew, kurtosis, and condition number. All of the p-values are less than 0.05
 
 ![resid](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Residuals.png)
+
+The residuals of the error terms don't follow a normal distribution perfectly but they are within an acceptable range.
+
+![exog](https://raw.githubusercontent.com/joshblumer/dsc-mod-2-project-v2-1-online-ds-sp-000/master/Photos/Screen%20Shot%202021-03-09%20at%209.20.32%20PM.png)
+
+There is some heteroscedasticy among the features indicating variance among the residuals, but not an alarming amount. 
 
 The r-squared improvement in the final model is marginal but by grouping all school districts into zones the VIF for each feature was lowered to less than 5 which is a great improvement. A high level of VIF indicates that the model can't distinguish which correlated features are contributing predictive power to the the models results so lowering the VIF makes the model much more reliable. 
 
