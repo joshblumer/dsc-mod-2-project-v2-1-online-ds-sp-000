@@ -10,7 +10,7 @@ An exploratory data analysis of the King County Housing database provided by The
 
 ## Technologies
 * The Jupyter Notebook "student.ipynb" found in this repo contains the data analysis and visualizations used in this project and was created using Python 3.7.6
-* There is a powerpoint presentation for non-technical audiences available under the file name "presentation.pdf"
+* There is a keynote presentation for non-technical audiences available under the file name "Mod2Presentation.pdf"
 
 ### Necessary libraries to reproduce and run this project are:
 
